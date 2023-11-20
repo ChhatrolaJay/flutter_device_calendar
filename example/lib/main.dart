@@ -30,6 +30,7 @@ class _MyAppState extends State<MyApp> {
         duration: "30",
         location: "Office 1",
         color: "0xFFFF0000",
+        organizerId: 'DeviceCalendar',
         eventTimeZone: "Asia/Kolkata",
         description: "Description 1"),
     Event(
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
       scheduleDate: "2023-11-17",
       eventTimeZone: "Asia/Kolkata",
       duration: "60",
+      organizerId: 'DeviceCalendar',
     ),
   ];
 

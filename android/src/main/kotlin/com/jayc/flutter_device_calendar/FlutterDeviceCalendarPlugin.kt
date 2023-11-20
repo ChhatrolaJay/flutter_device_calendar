@@ -62,7 +62,7 @@ class FlutterDeviceCalendarPlugin : FlutterPlugin, MethodCallHandler {
           // val selection = "${Events.CUSTOM_APP_PACKAGE} = ?"
           // val selectionArgs =arrayOf("IMS Connect")
           val selectionArgs = arrayOf(
-            "IMS Connect",
+            "${events[0]["organizerId"]}",
             eventStartTimeInMillis.toString(),
             eventEndTimeInMillis.toString()
           )
@@ -117,12 +117,9 @@ class FlutterDeviceCalendarPlugin : FlutterPlugin, MethodCallHandler {
               put(CalendarContract.Events.EVENT_TIMEZONE, eve["eventTimeZone"] as String/*"Asia/Kolkata"*/)
               put(CalendarContract.Events._ID, eventID)
               eve["color"]?.let { put(CalendarContract.Events.EVENT_COLOR, it as String) }
-//              put(CalendarContract.Events.EVENT_COLOR, eve["color"] as String)
               eve["location"]?.let { put(CalendarContract.Events.EVENT_LOCATION, it as String) }
-            /*  put(CalendarContract.Events.EVENT_LOCATION, eve["location"] as String)*/
               eve["description"]?.let { put(CalendarContract.Events.DESCRIPTION, it as String) }
-              /*put(CalendarContract.Events.DESCRIPTION, eve["description"] as String)*/
-              put(CalendarContract.Events.CUSTOM_APP_PACKAGE, "IMS Connect")
+              eve["organizerId"]?.let { put(CalendarContract.Events.CUSTOM_APP_PACKAGE, it as String) }
             }
             contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
             //println("Inserted Event with ID: $eventID")
