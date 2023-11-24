@@ -1,4 +1,4 @@
-import 'package:flutter_device_calendar/flutter_device_calendar.dart';
+import 'package:flutter_device_calendar/event_dm.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_device_calendar/flutter_device_calendar_platform_interface.dart';
 import 'package:flutter_device_calendar/flutter_device_calendar_method_channel.dart';

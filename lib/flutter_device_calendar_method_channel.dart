@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_device_calendar/flutter_device_calendar.dart';
+import 'package:flutter_device_calendar/event_dm.dart';
 
 import 'flutter_device_calendar_platform_interface.dart';
 
@@ -12,7 +12,6 @@ class MethodChannelFlutterDeviceCalendar extends FlutterDeviceCalendarPlatform {
 
   @override
   Future<void> addEvents({required List<Event> eventsList}) async {
-    debugPrint("We have reached here");
     List<Map<String, dynamic>> modelListMap =
         eventsList.map((event) => event.toJson()).toList();
     await methodChannel
