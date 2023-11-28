@@ -56,6 +56,7 @@ class FlutterDeviceCalendarPlugin : FlutterPlugin, MethodCallHandler {
       }
     } catch (e: Exception) {
       println("Error occurred: ${e.message}")
+      result.error("",e.message,"")
     }
   }
 

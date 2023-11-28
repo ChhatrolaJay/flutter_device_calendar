@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_device_calendar/flutter_device_calendar.dart';
 import 'package:flutter_device_calendar/event_dm.dart'; // Import your Event class
 
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final FlutterDeviceCalendar _flutterDeviceCalendarPlugin;
-  final _messangerKey = GlobalKey<ScaffoldMessengerState>();
+  final _snackBarKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   void initState() {
@@ -55,7 +56,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scaffoldMessengerKey: _messangerKey,
+      scaffoldMessengerKey: _snackBarKey,
       theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(
@@ -149,8 +150,11 @@ class _MyAppState extends State<MyApp> {
                         eventsList: eventList,
                       );
                       if (!mounted) return;
-                      _messangerKey.currentState?.showSnackBar(const SnackBar(
+                      _snackBarKey.currentState?.showSnackBar(const SnackBar(
                           content: Text('Events added successfully')));
+                    } on PlatformException catch (e) {
+                      _snackBarKey.currentState?.showSnackBar(
+                          SnackBar(content: Text('Error: ${e.message}')));
                     } catch (e) {
                       debugPrint('Found some error :${e.toString()}');
                     }
